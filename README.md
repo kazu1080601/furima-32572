@@ -59,12 +59,12 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| post_number        | integer    | null: false                    |
+| post_number        | string     | null: false                    |
 | prefecture         | string     | null: false                    |
 | municipality       | string     | null: false                    |
 | address            | string     | null: false                    |
 | building           | string     |                                |
-| phone              | integer    | null: false                    |
+| phone              | string     | null: false                    |
 | purchase           | references | foreign_key: true              |
 
 ### Association
