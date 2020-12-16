@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :items
-- has_many :addresses
+- has_many :purchases
 
 
 ## itemsテーブル
@@ -63,9 +63,9 @@
 | prefecture         | string     | null: false                    |
 | municipality       | string     | null: false                    |
 | address            | string     | null: false                    |
-| building           | string     | null: false                    |
+| building           | string     |                                |
 | phone              | integer    | null: false                    |
-| purchase           | references |                                |
+| purchase           | references | foreign_key: true              |
 
 ### Association
 - belongs_to :purchase
