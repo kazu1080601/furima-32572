@@ -6,18 +6,15 @@
 | ------------------ | ---------- | ------------------------------ |
 | nickname           | string     | null: false                    |
 | email              | string     | null: false                    |
-| password           | string     | null: false                    |
+| encrypted_password | string     | null: false                    |
 | first_name_kanji   | string     | null: false                    |
 | last_name_kanji    | string     | null: false                    |
 | first_name_kana    | string     | null: false                    |
 | last_name_kana     | string     | null: false                    |
-| birth_year         | integer    | null: false                    |
-| birth_month        | integer    | null: false                    |
-| birth_day          | integer    | null: false                    |
+| birthday           | date       | null: false                    |
 
 ### Association
 - has_many :items
-- has_many :cards
 - has_many :addresses
 
 
@@ -25,37 +22,37 @@
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| image              | -          | ActiveStorage                  |
 | name               | string     | null: false                    |
 | text               | text       | null: false                    |
-| category           | string     | null: false, pull-down list    |
-| condition          | string     | null: false, pull-down list    |
-| fee_bearing        | string     | null: false, pull-down list    |
-| delivery_area      | string     | null: false, pull-down list    |
-| preparation_period | string     | null: false, pull-down list    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| feebearing_id      | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
+| preparation_id     | integer    | null: false                    |
 | price              | integer    | null: false                    |
-| user               | references |                                |
+| user               | references | foreign_key: true              |
 
 ### Association
 - belongs_to :user
-- has_one :card
-- has_one :address
+- has_one :purchase
+- belongs_to :category
+- belongs_to :condition
+- belongs_to :feebearing
+- belongs_to :area
+- belongs_to :preparation
 
 
-## cardsテーブル
+## purchasesテーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
-| number             | integer    | null: false                    |
-| expiration_month   | integer    | null: false                    |
-| expiration_year    | integer    | null: false                    |
-| cord               | integer    | null: false                    |
-| user               | references |                                |
-| item               | references |                                |
+| user               | references | foreign_key: true              |
+| item               | references | foreign_key: true              |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
+- has_one :address
 
 
 ## addressesテーブル
@@ -68,10 +65,7 @@
 | address            | string     | null: false                    |
 | building           | string     | null: false                    |
 | phone              | integer    | null: false                    |
-| user               | references |                                |
-| item               | references |                                |
-
+| purchase           | references |                                |
 
 ### Association
-- belongs_to :user
-- belongs_to :item
+- belongs_to :purchase
