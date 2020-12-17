@@ -1,0 +1,2 @@
+class Feebearing < ApplicationRecord
+end
