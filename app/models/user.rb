@@ -17,7 +17,7 @@ class User < ApplicationRecord
     return if password.blank? || password =~ /\A(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}\z/
 
     errors.add :password,
-               'Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.'
+               'Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.(Excluding full-width)'
   end
 
   def first_name_kanji_check

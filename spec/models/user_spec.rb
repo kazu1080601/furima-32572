@@ -55,14 +55,21 @@ RSpec.describe User, type: :model do
         @user.password = Faker::Name.initials(number: 10)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.')
+        expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.(Excluding full-width)')
       end
 
       it 'パスワードが半角英数字混合でない（半角数字のみ）' do
         @user.password = Faker::Number.number(digits: 10)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.')
+        expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.(Excluding full-width)')
+      end
+
+      it 'パスワードが全角' do
+        @user.password = @user.password.tr("a-zA-Z0-9","ａ-ｚＡ-Ｚ０-９")
+        @user.password_confirmation = @user.password
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.(Excluding full-width)')
       end
 
       it 'パスワード確認欄が空欄' do
