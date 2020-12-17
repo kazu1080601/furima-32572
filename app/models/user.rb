@@ -11,12 +11,13 @@ class User < ApplicationRecord
   validate :last_name_kanji_check
   validate :first_name_kana_check
   validate :last_name_kana_check
-  
+
   def password_complexity
     # Regexp extracted from https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     return if password.blank? || password =~ /\A(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}\z/
 
-    errors.add :password, 'Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.'
+    errors.add :password,
+               'Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.'
   end
 
   def first_name_kanji_check
@@ -42,5 +43,4 @@ class User < ApplicationRecord
 
     errors.add :base, 'お名前（カナ）の名字には、全角カナを記入してください'
   end
-
 end
