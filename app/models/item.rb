@@ -17,7 +17,7 @@ class Item < ApplicationRecord
   def price_check
     return if price == nil || (price >= 300 && price <= 9999999)
 
-    errors.add :price, '販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください'
+    errors.add :price, '：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください'
   end
 
 end
