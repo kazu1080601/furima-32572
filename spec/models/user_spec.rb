@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワードが全角' do
-        @user.password = @user.password.tr("a-zA-Z0-9","ａ-ｚＡ-Ｚ０-９")
+        @user.password = @user.password.tr('a-zA-Z0-9', 'ａ-ｚＡ-Ｚ０-９')
         @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include('Password Complexity requirement not met. Length should be 6 characters minimum and include at least one letter and one number.(Excluding full-width)')
