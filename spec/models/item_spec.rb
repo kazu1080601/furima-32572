@@ -79,11 +79,30 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price ：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください')
       end
 
-      it '価格が半角数字でない' do
+      it '価格が半角数字でない（全角数字）' do
         @item.price = @item.price.to_s.tr('0-9', '０-９')
         @item.valid?
         expect(@item.errors.full_messages).to include('Price ：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください')
       end
+
+      it '価格が半角数字でない（全角文字）' do
+        @item.price = Gimei.city.hiragana
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price ：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください')
+      end
+
+      it '価格が半角数字でない（半角英数混合）' do
+        @item.price = Faker::Internet.password(min_length: 3, max_length: 3) + '1' + 'a'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price ：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください')
+      end
+
+      it '価格が半角数字でない（半角英字）' do
+        @item.price = Faker::Lorem.word
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price ：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください')
+      end
+
     end
   end
 end
