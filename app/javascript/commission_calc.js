@@ -1,5 +1,9 @@
-function tax_calc() {
+function commission_calc() {
   const price = document.getElementById("item-price");
+
+    if (price == null) {
+      return null;
+    }
 
     if (price.getAttribute("data-load") != null) {
       return null;
@@ -16,4 +20,4 @@ function tax_calc() {
     });
 }
 
-setInterval(tax_calc, 1000)
+setInterval(commission_calc, 1000)
