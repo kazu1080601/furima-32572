@@ -12,6 +12,7 @@ class ItemsController < ApplicationController
 
   def create
     item = Item.new(item_params)
+    binding.pry
     if item.save
       redirect_to new_user_session_path
     else
@@ -23,7 +24,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :text, :category_id, :condition_id, :feebearing_id, :area_id, :preparation_id,
+    params.require(:item).permit(:image, :name, :text, :category_id, :condition_id, :feebearing_id, :area_id, :preparation_id,
                                  :price).merge(user_id: current_user.id)
   end
 end
