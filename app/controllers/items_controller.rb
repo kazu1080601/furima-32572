@@ -12,7 +12,6 @@ class ItemsController < ApplicationController
 
   def create
     item = Item.new(item_params)
-    binding.pry
     if item.save
       redirect_to new_user_session_path
     else
