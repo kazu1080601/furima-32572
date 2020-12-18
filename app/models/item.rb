@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   belongs_to :user
   has_one_attached :image
   belongs_to :category
@@ -6,4 +8,6 @@ class Item < ApplicationRecord
   belongs_to :feebearing
   belongs_to :area
   belongs_to :preparation
+
+  validates :category_id, :condition_id, :feebearing_id, :area_id, :preparation_id, numericality: { other_than: 1 }
 end
