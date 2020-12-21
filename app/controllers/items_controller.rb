@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     if (current_user.id == @item.user.id) && @item.destroy
       redirect_to root_path
