@@ -2,12 +2,11 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: :index
 
   def index
-    @items = Item.all.order(id: "DESC")
+    @items = Item.all.order(id: 'DESC')
     @feebearings = []
     2.times do |i|
-      @feebearings[i + 2] = Feebearing.find (i + 2)
+      @feebearings[i + 2] = Feebearing.find(i + 2)
     end
-    binding.pry
   end
 
   def new

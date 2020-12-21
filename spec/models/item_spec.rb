@@ -102,7 +102,6 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price ：販売価格は¥300〜9,999,999の範囲で、半角数字で入力してください')
       end
-
     end
   end
 end
