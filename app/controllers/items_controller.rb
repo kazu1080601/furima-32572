@@ -3,10 +3,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.all.order(id: 'DESC')
-    @feebearings = []
-    2.times do |i|
-      @feebearings[i + 2] = Feebearing.find(i + 2)
-    end
   end
 
   def new
