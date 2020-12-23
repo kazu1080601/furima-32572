@@ -8,5 +8,7 @@ FactoryBot.define do
     building        { Faker::Lorem.word }
     phone           { Faker::Number.leading_zero_number(digits: 11) }
     token           { Faker::Lorem.characters(number: 10) }
+    user_id         { Faker::Number.number(digits: 1) }
+    item_id         { Faker::Number.number(digits: 1) }
   end
 end

@@ -9,6 +9,7 @@ class Order
     validates :area_id, numericality: { other_than: 1, message: 'select' }
     validates :municipality, :address
     validates :phone, format: { with: /\A0\d{9,10}\z/, message: 'is invalid. Input half-width characters without hyphen(-).' }
+    validates :user_id, :item_id
   end
 
   def save
