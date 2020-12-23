@@ -62,5 +62,4 @@ class ItemsController < ApplicationController
       @purchase_check << purchase.item_id
     end
   end
-
 end
