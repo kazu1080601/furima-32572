@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :purchase_check, only: [:index, :show]
 
   def index
     @items = Item.all.order(id: 'DESC')
+    @purchases = Purchase.all
   end
 
   def new
@@ -52,4 +54,13 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
+
+  def purchase_check
+    purchases = Purchase.all
+    @purchase_check = []
+    purchases.each do |purchase|
+      @purchase_check << purchase.item_id
+    end
+  end
+
 end
