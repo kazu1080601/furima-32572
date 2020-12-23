@@ -60,7 +60,7 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | post_number        | string     | null: false                    |
-| prefecture         | string     | null: false                    |
+| area_id            | integer    | null: false                    |
 | municipality       | string     | null: false                    |
 | address            | string     | null: false                    |
 | building           | string     |                                |
@@ -69,3 +69,4 @@
 
 ### Association
 - belongs_to :purchase
+- belongs_to :area
