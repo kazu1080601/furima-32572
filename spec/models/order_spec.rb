@@ -65,6 +65,12 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include('Phone is invalid. Input half-width characters without hyphen(-).')
       end
+
+      it '電話番号が12桁以上' do
+        @order.phone = Faker::Number.leading_zero_number(digits: 12)
+        @order.valid?
+        expect(@order.errors.full_messages).to include('Phone is invalid. Input half-width characters without hyphen(-).')
+      end
     end
   end
 end
